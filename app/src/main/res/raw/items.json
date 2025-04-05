@@ -1,0 +1,6 @@
+[
+  {"code": "SN001", "name": "Basic Chair", "room": "R101", "checked": false},
+  {"code": "SN-PC-WHITE-01", "name": "White PC", "room": "R101", "checked": false},
+  {"code": "SN-2024-MONITOR", "name": "4K Monitor", "room": "R202", "checked": false},
+  {"code": "SN-XYZ-123", "name": "Projector", "room": "R-AUDITORIUM", "checked": false}
+]

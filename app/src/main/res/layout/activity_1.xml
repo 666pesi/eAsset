@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#005278">
+
+    <!-- Room Code Input and Confirm Button -->
+    <LinearLayout
+        android:id="@+id/roomInputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/roomCodeInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Vložťe číslo miestnosti"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:backgroundTint="#0075c2"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/confirmRoomButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Potvrdiť"
+            android:backgroundTint="#0075c2"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <!-- Scan QR Code Button -->
+    <Button
+        android:id="@+id/scanButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skener QR"
+        android:backgroundTint="#0075c2"
+        android:textColor="#ffffff"
+        android:layout_below="@id/roomInputContainer"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Inventory Input and Check Button -->
+    <LinearLayout
+        android:id="@+id/inventoryInputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/scanButton"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/inventoryInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Vložťe číslo produktu"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:backgroundTint="#0075c2"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kontrola"
+            android:backgroundTint="#0075c2"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <!-- Add New Item Button -->
+    <Button
+        android:id="@+id/addItemButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New Item"
+        android:backgroundTint="#0075c2"
+        android:textColor="#ffffff"
+        android:layout_below="@id/inventoryInputContainer"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"/>
+
+    <!-- List of Items -->
+    <ListView
+        android:id="@+id/inventoryListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0075c2"
+        android:layout_below="@id/addItemButton"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Error Message -->
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff6f04"
+        android:visibility="gone"
+        android:layout_below="@id/inventoryListView"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Logo at the Bottom -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/htslogobig3"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+</RelativeLayout>

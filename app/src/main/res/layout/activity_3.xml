@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#005278">
+
+    <!-- Product Code Input -->
+    <EditText
+        android:id="@+id/productCodeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter product code (e.g., A001)"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:backgroundTint="#0075c2"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Scan QR Code Button -->
+    <Button
+        android:id="@+id/scanButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skener QR"
+        android:backgroundTint="#0075c2"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Check Button -->
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kontrola produktu"
+        android:backgroundTint="#0075c2"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Product Information -->
+    <TextView
+        android:id="@+id/productInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:padding="16dp"
+        android:background="#0075c2"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Spacer to push the logo to the bottom -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Logo at the Bottom -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/htslogobig3"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+</LinearLayout>

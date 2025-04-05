@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="#0075c2"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/icon1"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/menu_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu Item"
+        android:textSize="14sp"
+        android:textColor="#ffffff"/>
+</LinearLayout>

@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#00334d">
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#ffffff"
+        android:dividerHeight="1dp"
+        android:groupIndicator="@null"/>
+
+    <!-- Logo at the Bottom -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/htslogobig3"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+</LinearLayout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">eAsset</string>
+    <string name="welcome_to_activity_1">Welcome to Activity 1</string>
+    <string name="welcome_to_activity_2">Welcome to Activity 2\n</string>
+</resources>

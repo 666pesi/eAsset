@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#005278">
+
+    <!-- Logo Placeholder -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/htslogobig3" />
+
+    <!-- Error Message -->
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff6f04"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Fetch Users Button as Image -->
+    <ImageView
+        android:id="@+id/fetchUsersButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/sync"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Load Users"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <!-- Username Input -->
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#0075c2"
+        android:hint="Username"
+        android:inputType="text"
+        android:textColor="#ffffff" />
+
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Heslo"
+        android:inputType="textPassword"
+        android:textColor="#ffffff"
+        android:backgroundTint="#0075c2"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prihlásiť"
+        android:backgroundTint="#0075c2"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Spacer to push content up when keyboard appears -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

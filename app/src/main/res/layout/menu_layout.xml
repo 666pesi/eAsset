@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#005278">
+
+    <!-- First Row of Menu Items -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <include layout="@layout/menu_item"/>
+        <include layout="@layout/menu_item"/>
+        <include layout="@layout/menu_item"/>
+    </LinearLayout>
+
+    <!-- Second Row of Menu Items -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <include layout="@layout/menu_item"/>
+        <include layout="@layout/menu_item"/>
+        <include layout="@layout/menu_item"/>
+    </LinearLayout>
+
+    <!-- Add more rows as needed -->
+</LinearLayout>

@@ -1,0 +1,6 @@
+[
+  {"code": "R101", "name": "Main Office"},
+  {"code": "R202", "name": "Conference Room"},
+  {"code": "R-AUDITORIUM", "name": "Auditorium"},
+  {"code": "R-BASEMENT-01", "name": "Storage Room"}
+]

@@ -1,0 +1,260 @@
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_login.xml b/app/src/main/res/layout/activity_login.xml
+--- a/app/src/main/res/layout/activity_login.xml	
++++ b/app/src/main/res/layout/activity_login.xml	(date 1743282950604)
+@@ -23,17 +23,6 @@
+         android:visibility="gone"
+         android:layout_marginBottom="16dp"/>
+ 
+-    <!-- Fetch Users Button -->
+-    <Button
+-        android:id="@+id/fetchUsersButton"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Load Users"
+-        android:layout_gravity="end"
+-        android:layout_marginBottom="16dp"
+-        android:backgroundTint="#0075c2"
+-        android:textColor="#ffffff"/>
+-
+     <!-- Username Input -->
+     <EditText
+         android:id="@+id/usernameInput"
+Index: app/src/main/java/com/example/myapplication/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/LoginActivity.java b/app/src/main/java/com/example/myapplication/LoginActivity.java
+--- a/app/src/main/java/com/example/myapplication/LoginActivity.java	
++++ b/app/src/main/java/com/example/myapplication/LoginActivity.java	(date 1743282902839)
+@@ -7,21 +7,8 @@
+ import android.widget.EditText;
+ import android.widget.TextView;
+ import androidx.appcompat.app.AppCompatActivity;
+-import com.google.gson.Gson;
+-import com.google.gson.reflect.TypeToken;
+-import java.lang.reflect.Type;
+-import java.util.ArrayList;
+-import java.util.List;
+-import java.util.Map;
+-import retrofit2.Call;
+-import retrofit2.Callback;
+-import retrofit2.Response;
+-import retrofit2.Retrofit;
+-import retrofit2.converter.gson.GsonConverterFactory;
+ 
+ public class LoginActivity extends AppCompatActivity {
+-    private List<Map<String, String>> users = new ArrayList<>();
+-    private Button fetchUsersButton;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -32,9 +19,10 @@
+         EditText passwordInput = findViewById(R.id.passwordInput);
+         Button loginButton = findViewById(R.id.loginButton);
+         TextView errorText = findViewById(R.id.errorText);
+-        fetchUsersButton = findViewById(R.id.fetchUsersButton);
+ 
+-        fetchUsersButton.setOnClickListener(v -> fetchUsersFromApi());
++        // Hardcoded users
++        String[] users = {"user1", "user2", "user3"};
++        String password = "password"; // Same password for all users
+ 
+         loginButton.setOnClickListener(v -> {
+             String username = usernameInput.getText().toString();
+@@ -47,49 +35,23 @@
+             }
+ 
+             boolean isValidUser = false;
+-            for (Map<String, String> user : users) {
+-                if (user.get("username").equals(username) && user.get("password").equals(inputPassword)) {
++            for (String user : users) {
++                if (user.equals(username) && password.equals(inputPassword)) {
+                     isValidUser = true;
+                     break;
+                 }
+             }
+ 
+             if (isValidUser) {
++                // Start MainActivity and pass the username
+                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                 intent.putExtra("username", username);
+                 startActivity(intent);
+-                finish();
++                finish(); // Close LoginActivity
+             } else {
+                 errorText.setText("Invalid username or password.");
+                 errorText.setVisibility(View.VISIBLE);
+             }
+         });
+     }
+-
+-    private void fetchUsersFromApi() {
+-        Retrofit retrofit = new Retrofit.Builder()
+-                .baseUrl("https://api-production-b7ac.up.railway.app/")
+-                .addConverterFactory(GsonConverterFactory.create())
+-                .build();
+-
+-        ApiService apiService = retrofit.create(ApiService.class);
+-        Call<List<Map<String, String>>> call = apiService.getUsers();
+-
+-        call.enqueue(new Callback<List<Map<String, String>>>() {
+-            @Override
+-            public void onResponse(Call<List<Map<String, String>>> call, Response<List<Map<String, String>>> response) {
+-                if (response.isSuccessful() && response.body() != null) {
+-                    users = response.body();
+-                    Toast.makeText(LoginActivity.this, "Users loaded successfully", Toast.LENGTH_SHORT).show();
+-                } else {
+-                    Toast.makeText(LoginActivity.this, "Failed to load users", Toast.LENGTH_SHORT).show();
+-                }
+-            }
+-
+-            @Override
+-            public void onFailure(Call<List<Map<String, String>>> call, Throwable t) {
+-                Toast.makeText(LoginActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+-            }
+-        });
+-    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/myapplication/ImportActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/ImportActivity.java b/app/src/main/java/com/example/myapplication/ImportActivity.java
+--- a/app/src/main/java/com/example/myapplication/ImportActivity.java	
++++ b/app/src/main/java/com/example/myapplication/ImportActivity.java	(date 1743282944237)
+@@ -17,7 +17,6 @@
+ import java.io.FileOutputStream;
+ import java.io.IOException;
+ import java.util.List;
+-import java.util.Map;
+ 
+ public class ImportActivity extends AppCompatActivity {
+     private ListView listView;
+@@ -39,9 +38,9 @@
+         saveButton.setOnClickListener(v -> {
+             if (fetchedItems != null) {
+                 saveDataToFile(fetchedItems);
+-                InventoryManager.updateItems(fetchedItems);
++                InventoryManager.updateItems(fetchedItems); // Add this line from first code
+             } else {
+-                Toast.makeText(this, "No data to save. Please fetch data first.", Toast.LENGTH_SHORT).show();
++                Toast.makeText(this, "Žiadne údaje na uloženie. Najskôr načítajte údaje.", Toast.LENGTH_SHORT).show();
+             }
+         });
+     }
+@@ -53,24 +52,18 @@
+                 .build();
+ 
+         ApiService apiService = retrofit.create(ApiService.class);
++        Call<List<Item>> call = apiService.loadData();
+ 
+-        // Fetch items
+-        Call<List<Item>> itemsCall = apiService.loadData();
+-        itemsCall.enqueue(new Callback<List<Item>>() {
++        call.enqueue(new Callback<List<Item>>() {
+             @Override
+             public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                 if (response.isSuccessful() && response.body() != null) {
+                     fetchedItems = response.body();
+                     displayData(fetchedItems);
+-
+-                    // Now fetch rooms and inventory check in background
+-                    fetchRooms();
+-                    fetchInventoryCheck();
+-
+-                    Toast.makeText(ImportActivity.this, "Data loaded successfully", Toast.LENGTH_SHORT).show();
++                    Toast.makeText(ImportActivity.this, "Úspešné načítanie údajov", Toast.LENGTH_SHORT).show();
+                 } else {
+-                    Log.e(TAG, "Failed to load data: " + response.message());
+-                    Toast.makeText(ImportActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
++                    Log.e(TAG, "Nepodarilo sa načítať údaje: " + response.message());
++                    Toast.makeText(ImportActivity.this, "Nepodarilo sa načítať údaje", Toast.LENGTH_SHORT).show();
+                 }
+             }
+ 
+@@ -82,72 +75,19 @@
+         });
+     }
+ 
+-    private void fetchRooms() {
+-        Retrofit retrofit = new Retrofit.Builder()
+-                .baseUrl("https://api-production-b7ac.up.railway.app/")
+-                .addConverterFactory(GsonConverterFactory.create())
+-                .build();
+-
+-        ApiService apiService = retrofit.create(ApiService.class);
+-        Call<List<Item>> call = apiService.getRooms();
+-        call.enqueue(new Callback<List<Item>>() {
+-            @Override
+-            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+-                if (response.isSuccessful() && response.body() != null) {
+-                    saveDataToFile(response.body(), "rooms.json");
+-                }
+-            }
+-
+-            @Override
+-            public void onFailure(Call<List<Item>> call, Throwable t) {
+-                Log.e(TAG, "Failed to load rooms: " + t.getMessage());
+-            }
+-        });
+-    }
+-
+-    private void fetchInventoryCheck() {
+-        Retrofit retrofit = new Retrofit.Builder()
+-                .baseUrl("https://api-production-b7ac.up.railway.app/")
+-                .addConverterFactory(GsonConverterFactory.create())
+-                .build();
+-
+-        ApiService apiService = retrofit.create(ApiService.class);
+-        Call<Map<String, List<String>>> call = apiService.getInventoryCheck();
+-        call.enqueue(new Callback<Map<String, List<String>>>() {
+-            @Override
+-            public void onResponse(Call<Map<String, List<String>>> call, Response<Map<String, List<String>>> response) {
+-                if (response.isSuccessful() && response.body() != null) {
+-                    Gson gson = new Gson();
+-                    String jsonData = gson.toJson(response.body());
+-                    saveJsonToFile(jsonData, "inventory_check.json");
+-                }
+-            }
+-
+-            @Override
+-            public void onFailure(Call<Map<String, List<String>>> call, Throwable t) {
+-                Log.e(TAG, "Failed to load inventory check: " + t.getMessage());
+-            }
+-        });
+-    }
+-
+-    private void saveDataToFile(List<Item> items, String fileName) {
++    private void saveDataToFile(List<Item> items) {
++        String fileName = "items.json";
+         Gson gson = new Gson();
+         String jsonData = gson.toJson(items);
+-        saveJsonToFile(jsonData, fileName);
+-    }
+ 
+-    private void saveJsonToFile(String jsonData, String fileName) {
+         try (FileOutputStream fos = openFileOutput(fileName, MODE_PRIVATE)) {
+             fos.write(jsonData.getBytes());
++            Toast.makeText(this, "Údaje uložené do " + fileName, Toast.LENGTH_SHORT).show();
+         } catch (IOException e) {
+-            Log.e(TAG, "Error saving file: " + fileName, e);
++            Log.e(TAG, "Chyba pri ukladaní súboru: " + e.getMessage(), e);
++            Toast.makeText(this, "Nepodarilo sa uložiť údaje", Toast.LENGTH_SHORT).show();
+         }
+     }
+-
+-    private void saveDataToFile(List<Item> items) {
+-        saveDataToFile(items, "items.json");
+-        Toast.makeText(this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+-    }
+ 
+     private void displayData(List<Item> items) {
+         String[] itemStrings = new String[items.size()];

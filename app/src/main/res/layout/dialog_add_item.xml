@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/dialogItemNameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter item name"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:backgroundTint="#0075c2"
+        android:layout_marginBottom="8dp"/>
+</LinearLayout>
