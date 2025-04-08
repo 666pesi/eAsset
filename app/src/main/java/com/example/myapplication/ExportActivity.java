@@ -27,10 +27,10 @@ public class ExportActivity extends AppCompatActivity {
 
     private void showExportConfirmation() {
         new AlertDialog.Builder(this)
-                .setTitle("Confirm Export")
-                .setMessage("Are you sure you want to export all inventory data?")
+                .setTitle("Potvrdiť export")
+                .setMessage("Ste si istí, že chcete exportovať všetky údaje o zásobách?")
                 .setPositiveButton("Export", (dialog, which) -> exportData())
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Zrušiť", null)
                 .show();
     }
 
@@ -49,9 +49,9 @@ public class ExportActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(ExportActivity.this, "Data exported successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ExportActivity.this, "Údaje boli úspešne exportované!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ExportActivity.this, "Failed to export data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ExportActivity.this, "Nepodarilo sa exportovať údaje", Toast.LENGTH_SHORT).show();
                 }
             }
 

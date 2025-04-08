@@ -28,10 +28,10 @@ public class Activity3 extends AppCompatActivity {
         checkButton = findViewById(R.id.checkButton);
         productInfoText = findViewById(R.id.productInfoText);
 
-        // Initialize the InventoryManager
+        // Inicializácia InventoryManager
         InventoryManager.initialize(this);
 
-        // Handle Scan Button Click
+        // Scan Button Click
         scanButton.setOnClickListener(v -> {
             ScanOptions options = new ScanOptions();
             options.setPrompt("Scan a QR code");
@@ -41,7 +41,7 @@ public class Activity3 extends AppCompatActivity {
             barcodeLauncher.launch(options);
         });
 
-        // Handle Check Button Click
+        // Check Button Click
         checkButton.setOnClickListener(v -> {
             String productCode = productCodeInput.getText().toString().trim();
             if (productCode.isEmpty()) {

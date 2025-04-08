@@ -10,7 +10,7 @@
         android:id="@+id/productCodeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter product code (e.g., A001)"
+        android:hint="Vložte číslo produktu"
         android:inputType="text"
         android:textColor="#ffffff"
         android:backgroundTint="#0075c2"

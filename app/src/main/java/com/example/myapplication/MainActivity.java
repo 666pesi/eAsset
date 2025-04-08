@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,25 @@ public class MainActivity extends AppCompatActivity {
         // Initialize InventoryManager
         InventoryManager.initialize(this);
 
-        findViewById(R.id.logoutButton).setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        findViewById(R.id.logoutButton).setOnClickListener(view -> showLogoutConfirmation());
+    }
+
+    private void showLogoutConfirmation() {
+        new AlertDialog.Builder(this)
+                .setTitle("Potvrdiť")
+                .setMessage("Ste si istý že sa chcete odhlásiť?")
+                .setPositiveButton("Áno", (dialog, which) -> {
+
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Nie", (dialog, which) -> {
+
+                    dialog.dismiss();
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     public void goToActivity1(View view) {

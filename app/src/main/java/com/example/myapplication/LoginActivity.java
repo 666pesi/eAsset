@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             String inputPassword = passwordInput.getText().toString();
 
             if (username.isEmpty() || inputPassword.isEmpty()) {
-                errorText.setText("Please enter username and password.");
+                errorText.setText("Zadajte používateľské meno a heslo.");
                 errorText.setVisibility(View.VISIBLE);
                 return;
             }
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else {
-                errorText.setText("Invalid username or password.");
+                errorText.setText("Nesprávne používateľské meno alebo heslo.");
                 errorText.setVisibility(View.VISIBLE);
             }
         });
@@ -80,9 +80,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<List<Map<String, String>>> call, Response<List<Map<String, String>>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     users = response.body();
-                    Toast.makeText(LoginActivity.this, "Users loaded successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Úspešné načítanie používateľov", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Failed to load users", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Nepodarilo sa načítať používateľov", Toast.LENGTH_SHORT).show();
                 }
             }
 

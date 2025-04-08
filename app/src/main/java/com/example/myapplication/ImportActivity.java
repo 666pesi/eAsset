@@ -40,9 +40,9 @@ public class ImportActivity extends AppCompatActivity {
             if (fetchedItems != null) {
                 saveDataToFile(fetchedItems, "items.json");
                 InventoryManager.updateItems(fetchedItems);
-                Toast.makeText(this, "Data saved successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Údaje boli úspešne uložené", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "No data to save", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Žiadne údaje na ukladanie", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -64,9 +64,9 @@ public class ImportActivity extends AppCompatActivity {
                     displayData(fetchedItems);
                     fetchRooms();
                     fetchInventoryCheck();
-                    Toast.makeText(ImportActivity.this, "Data loaded successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ImportActivity.this, "Údaje boli úspešne načítané", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ImportActivity.this, "Failed to load items", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ImportActivity.this, "Nepodarilo sa načítať položky", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -94,7 +94,7 @@ public class ImportActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Item>> call, Throwable t) {
-                Log.e(TAG, "Failed to load rooms", t);
+                Log.e(TAG, "Nepodarilo sa načítať izby", t);
             }
         });
     }
@@ -117,7 +117,7 @@ public class ImportActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Map<String, List<String>>> call, Throwable t) {
-                Log.e(TAG, "Failed to load inventory check", t);
+                Log.e(TAG, "Nepodarilo sa načítať zásoby", t);
             }
         });
     }
@@ -126,7 +126,7 @@ public class ImportActivity extends AppCompatActivity {
         try (FileOutputStream fos = openFileOutput(fileName, MODE_PRIVATE)) {
             fos.write(new Gson().toJson(data).getBytes());
         } catch (IOException e) {
-            Log.e(TAG, "Error saving " + fileName, e);
+            Log.e(TAG, "Chybné uloženie " + fileName, e);
         }
     }
 

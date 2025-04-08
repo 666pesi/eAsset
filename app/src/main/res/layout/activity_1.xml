@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Vložťe číslo miestnosti"
+            android:hint="Vložte číslo miestnosti"
             android:inputType="text"
             android:textColor="#ffffff"
             android:backgroundTint="#0075c2"
@@ -104,11 +104,4 @@
         android:layout_centerHorizontal="true"/>
 
     <!-- Logo at the Bottom -->
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/htslogobig3"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
 </RelativeLayout>
